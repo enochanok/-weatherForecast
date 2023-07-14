@@ -1,12 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Forcast</title>
-</head>
-<body>
-    <p>Welcome to Weather Forcast</p>
-</body>
+    <link rel="icon" href="./asset/img/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css"
+    />
+  </head>
+  <body>
+
+    <div id="preloader"></div>
+    <nav>
+      <div class="searchBar">
+        <figure>
+          <img class="weather_logo" src="/asset/img/favicon.png" alt="logo" />
+        </figure>
+
+        <div>
+          <input id="locationName" placeholder="Location" />
+          <i id="Search" class="fa fa-search"></i>
+        </div>
+      </div>
+    </nav>
+    <main class="container">
+      <div class="current__date">
+        <p id="day"></p>
+        <p id="date"></p>
+        <p id="time"></p>
+      </div>
+
+      <section class="top__section">
+        <div class="top_section-names">
+          <div class="top-section-names_description">
+            <p id="name"></p>
+            <p id="country"></p>
+          </div>
+          <h1 id="temperature"></h1>
+          <p id="weather_description"></p>
+        </div>
+        <div class="top__section-weatherSection">
+          <div id="top__section-weatherIcon"></div>
+          <div id="top__section-weatherSection-temperature">
+            <span id="temp_min"></span> /
+            <span id="temp_max"></span>
+          </div>
+        </div>
+      </section>
+
+      <div class="lower__section">
+        <div class="lower__section-field">
+          <h4>
+            Pressure
+            <p id="pressure"></p>
+          </h4>
+          <h4>
+            Wind Speed
+            <p id="wind_speed"></p>
+          </h4>
+          <h4>
+            Humidity
+            <p id="humidity"></p>
+          </h4>
+          
+        </div>
+        
+      </div>
+      <div class="view__history">
+        <a href="javascript:void(0)" id="history-trigger"> <p>View History</p></a>
+      </main>
+      </div>
+      
+   
+    <div id="footer"></div>
+  </body>
+  <script src="script.js" defer></script>
 </html>

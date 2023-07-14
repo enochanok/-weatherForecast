@@ -1,0 +1,208 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 
+                'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+:root{
+    --primary-color: #4b595e;
+    --primary-blue: #8ad0ce;
+    --primay-lightBlue: #bdf7ff;
+    --primary-orange: #ff6d6d;
+    --primary-yellow:  #ffe963;  
+    --primary-white: #fff;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+}
+
+img {
+    -webkit-user-drag: none;  
+    -khtml-user-drag: none;   
+    -moz-user-drag: none;     
+    -o-user-drag: none;      
+  }
+
+a {
+    color: var(--primary-yellow);
+    text-decoration: none;
+}
+
+body{
+    background-color: var(--primary-color) ;
+    color: white;
+}
+
+
+ /* Navbar section */
+nav{
+    background-color:var(--primary-blue);
+}
+
+.searchBar{
+    width: 30%;
+    margin: 0 auto;
+    padding: 1.5em 0.5em;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5em;
+}
+
+.weather_logo{
+    height: 30px;
+    width: 30px; 
+}
+
+#locationName{
+    width: 15vw;
+    padding: 0.6em;
+    border-radius: 5px;
+    outline: none;
+    border: 0px solid var(--primary-blue);
+}
+
+#Search{
+    color: var(--primary-color);
+    padding: 5px;
+    size: 1em;
+
+}
+
+.container{
+    width: 30%;
+    margin: 2em auto;
+    padding: 2em 0;
+    color: var(--primary-white);
+}
+
+  /* top section  */
+.top__section{
+    display: grid;
+    border-radius: 8px;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: var(--primary-orange);
+}
+
+.top_section-names{
+    padding: 2em 0 2em 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-section-names_description{
+    font-size: 1.8rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+}
+
+#temperature{
+    padding: 0.5rem 0 0 0 ;
+    font-size: 3.2rem;
+}
+
+#weather_description{
+    padding-top: .8rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.top__section-weatherSection{
+    padding: 0 0 0 5rem;
+}
+
+#top__section-weatherIcon{
+    padding: 0 2rem;
+}
+
+#top__section-weatherSection-temperature{
+    display: flex;
+    padding: 1rem 1rem 0 0;
+    gap: 0.3rem;
+    font-weight: 600;
+}
+
+.lower__section{
+    margin-top: 1rem;
+    gap: 1rem;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--primary-white);
+}
+
+.lower__section-field{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2rem 2rem;
+}
+
+.lower__section-field #pressure, #humidity, #wind_speed {
+    padding: 0.4rem 0 0 0.8rem;
+    font-weight: 400 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.current__date{ 
+    display: flex;
+    margin: 1rem auto;
+    padding: 1rem;
+    font-weight: 800;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid var(--primary-white);
+    
+}
+
+.view__history{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#history-trigger{
+    margin: 0.7rem 0.2rem;
+    padding: 1rem 0.5rem;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
+}
+
+#history-trigger:hover{
+   background-color: var(--primary-blue);
+   border: 1px solid var(--primary-color);
+   color: black;
+}
+
+
+
+#preloader{
+    background: #000 url('https://media3.giphy.com/media/cnzP4cmBsiOrccg20V/200w.webp?cid=ecf05e47wuwy3rsoil75slvkyfbjgdxg6pp74o6arj9tgkrd&ep=v1_gifs_related&rid=200w.webp&ct=g') no-repeat center center;
+    background-size: 15%;
+    height: 100vh;
+    animation: spin 2s linear infinite;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+}
+
+#footer{
+    width: 60%;
+    margin: 0 auto;
+    color: var(--primary-yellow);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px; /* Set appropriate height */
+    text-align: center;
+    line-height: 30px;
+}
