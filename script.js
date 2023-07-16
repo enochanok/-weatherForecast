@@ -18,7 +18,7 @@ let fetchData = function fetchWeather(locationName){
         locationName = document.getElementById("locationName").value;
         const appid = "1777b6252cacbfaadcdd94227bf20ba6";
         const units = "metric";
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${locationName}&appid=${appid}&units=${units}`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${locationName}&appid=${appid}&units=${units}`;
         data = fetch(url)
         .then((response) => {
           if (!response.ok) {
