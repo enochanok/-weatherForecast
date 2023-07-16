@@ -37,13 +37,13 @@ body{
 }
 
 
- /* Navbar section */
+ /* Navigation section */
 nav{
     background-color:var(--primary-blue);
 }
 
 .searchBar{
-    width: 30%;
+    width: 40%;
     margin: 0 auto;
     padding: 1.5em 0.5em;
     display: flex;
@@ -72,7 +72,7 @@ nav{
 }
 
 .container{
-    width: 30%;
+    width: 40%;
     margin: 2em auto;
     padding: 2em 0;
     color: var(--primary-white);
@@ -112,7 +112,7 @@ nav{
 }
 
 .top__section-weatherSection{
-    padding: 0 0 0 5rem;
+    /* padding: 0 0 0 5rem; */
 }
 
 #top__section-weatherIcon{
@@ -126,6 +126,7 @@ nav{
     font-weight: 600;
 }
 
+/* lower Section */
 .lower__section{
     margin-top: 1rem;
     gap: 1rem;
@@ -156,7 +157,7 @@ nav{
     display: flex;
     margin: 1rem auto;
     padding: 1rem;
-    font-weight: 800;
+    font-weight: 650;
     border-radius: 8px;
     align-items: center;
     justify-content: space-around;
@@ -164,6 +165,7 @@ nav{
     
 }
 
+/* history Section */
 .view__history{
     display: flex;
     justify-content: flex-end;
@@ -184,7 +186,7 @@ nav{
 }
 
 
-
+/* preloader Section */
 #preloader{
     background: #000 url('https://media3.giphy.com/media/cnzP4cmBsiOrccg20V/200w.webp?cid=ecf05e47wuwy3rsoil75slvkyfbjgdxg6pp74o6arj9tgkrd&ep=v1_gifs_related&rid=200w.webp&ct=g') no-repeat center center;
     background-size: 15%;
@@ -195,6 +197,34 @@ nav{
     z-index: 10;
 }
 
+
+
+/* error Message Section */
+.errorMessage{
+    display: none;
+    width: 35%;
+    z-index: 10;
+    outline: none;
+    padding: 5rem;
+    font-size: 25px;
+    border-radius: 8px;
+    margin: 3rem auto;
+    align-items: start;
+    border: 1px solid rgb(159,13,35);
+    background: rgb(159,13,35);
+    background: linear-gradient(180deg, rgba(159,13,35,1) 38%, rgba(130,21,21,1) 83%);
+    -webkit-box-shadow: 7px 7px 14px -1px rgba(0,0,0,0.31);
+    -moz-box-shadow: 7px 7px 14px -1px rgba(0,0,0,0.31);
+    box-shadow: 7px 7px 14px -1px rgba(0,0,0,0.31);
+}
+
+.errorMessage_content {
+    background-color: red;
+    z-index: 11;
+    color: red;
+}
+
+/* footer Section */
 #footer{
     width: 60%;
     margin: 0 auto;
@@ -206,3 +236,91 @@ nav{
     text-align: center;
     line-height: 30px;
 }
+
+/* Small devices (up to 576px) */
+@media (max-width: 576px) {
+    .searchBar {
+      width: 90%;
+    }
+
+    #locationName{
+        width: 40vw;
+    }
+
+    .top_section-names{
+        padding: 2rem 2rem;
+    }
+  
+    .container {
+     padding: 0 !important;
+      width: 90%;
+    }
+  
+    .errorMessage {
+      width: 90%;
+      font-size: 20px !important;
+    }
+
+    #footer {
+        position: relative !important;
+        height: 15px !important;
+      }
+  
+}
+  
+  /* Medium devices (576px - 768px) */
+  @media (min-width: 576px) and (max-width: 768px) {
+    .searchBar {
+      width: 80%;
+    }
+  
+ 
+
+    .container {
+      width: 80%;
+    }
+  
+    .errorMessage {
+      width: 80%;
+      
+    }
+  
+  
+  }
+  
+  /* Large devices (768px - 992px) */
+  @media (min-width: 768px) and (max-width: 992px) {
+    .searchBar {
+      width: 70%;
+    }
+
+    #locationName{
+        width: 30vw;
+    }
+  
+    .container {
+      width: 70%;
+    }
+  
+    .errorMessage {
+      width: 70%;
+    }
+  
+
+  }
+  
+  /* Extra-large devices (992px - 1200px) */
+  @media (min-width: 992px) and (max-width: 1200px) {
+    .searchBar {
+      width: 60%;
+    }
+  
+    .container {
+      width: 60%;
+    }
+  
+    .errorMessage {
+      width: 60%;
+    }
+  
+  }

@@ -7,7 +7,8 @@ function onboarding(){
     fetch(url)
     .then((response) => response.json())
     .then((data) => {
-       searchResponse(data);
+        searchResponse(data);
+    
     })
 
 }
@@ -19,19 +20,46 @@ let fetchData = function fetchWeather(locationName){
         const units = "metric";
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${locationName}&appid=${appid}&units=${units}`;
         data = fetch(url)
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            if (locationName.length == 0) {
-                reject("Please enter a location name")
-            } else if (data.Error) {
-                reject("Location not found");
+        .then((response) => {
+          if (!response.ok) {
+            if (response.status === 404) {
+              throw new Error("Location not found");
+            } else if (response.status === 500) {
+              throw new Error("Internal server error.");
+            }else if (locationName.length == 0) {
+              throw new Error("Enter a location Name.");
             } else {
-                resolve(data);
+              throw new Error("An error occurred");
             }
-        });
+          }
+          return response.json();
+        })
+          .then((data) => {
+              resolve(data);  
+        })
+        .catch((error) => {
+          reject((error.message));
+        })
     })   
 }
+
+function clock() {
+  let today = new Date();
+  let hours = today.getHours();
+  let minutes = today.getMinutes();
+  let seconds = String(today.getSeconds()).padStart(2, '0');
+  let timePeriod = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; //covert 0 to 12
+  let time = hours + ":" + (minutes < 10 ? '0' + minutes : minutes) + ":" + seconds +  ' ' + timePeriod;
+  setTimeout(() =>{
+    document.getElementById('time').textContent = time;
+  },1000) 
+  
+}
+
+// Update the seconds every second
+setInterval(clock, 1000);
 
 function searchResponse(data) {
     let today = new Date();
@@ -43,17 +71,9 @@ function searchResponse(data) {
     let dayIndex = today.getDay();
     let dayName = daysOfWeek[dayIndex];  
     
-    let hours = today.getHours();
-    let minutes = today.getMinutes();
-    let timePeriod = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12; //covert 0 to 12
-    let time = hours + ":" + (minutes < 10 ? '0' + minutes : minutes) + ' ' + timePeriod;
-
     document.getElementById("date").innerHTML = dates;
-    document.getElementById("time").innerHTML = time;
     document.getElementById("day").innerHTML = dayName;
-    document.getElementById("name").innerHTML = data.name + ", ";
+    document.getElementById("name").innerHTML = data.name + ",";
     document.getElementById("country").innerHTML = data.sys.country;
     let description = data.weather[0].description;
     let weatherDescription = description.charAt(0).toUpperCase() + description.slice(1);
@@ -61,7 +81,7 @@ function searchResponse(data) {
     document.getElementById("temperature").innerHTML = data.main.temp + " °C" ;
     document.getElementById("humidity").innerHTML =  `<img width="30" height="30" style="filter: invert(100%)"; src="https://img.icons8.com/external-yogi-aprelliyanto-glyph-yogi-aprelliyanto/32/000000/external-humidity-smart-farm-yogi-aprelliyanto-glyph-yogi-aprelliyanto.png" alt=""/>` + data.main.humidity + " %" ;
     document.getElementById("pressure").innerHTML = `<img width="30" height="30" style="filter: invert(100%)"; src="https://img.icons8.com/ios/50/3d-touch.png" alt="3d-touch"/>` +  data.main.pressure + " Pa";
-    document.getElementById("wind_speed").innerHTML = `<img width="30" height="30" style="filter: invert(100%)"; src="https://img.icons8.com/ios-filled/50/000000/wind--v1.png" alt="wind--v1"/>` +  data.wind.speed + " km/h";
+    document.getElementById("wind_speed").innerHTML = `<img width="30" height="30" style="filter: invert(100%)"; src="https://img.icons8.com/ios-filled/50/000000/wind--v1.png" alt="wind--v1"/>` +  data.wind.speed + " km / h";
     const weatherIconId = data.weather[0].icon;
     const weatherIconElement =  document.getElementById("top__section-weatherIcon")
     weatherIconElement.innerHTML = `<img style="height:100px; width:100px;"src="http://openweathermap.org/img/w/${weatherIconId}.png">`;
@@ -77,20 +97,34 @@ function setData(data){
 }
 
 async function main() {
+  let errorMessageElement = document.querySelector(".errorMessage");
+  const mainSection = document.querySelector(".container");
+  let bodySection = document.querySelector('body');
  try {
      const locationName = document.querySelector("#locationName").value;
      data = await fetchData(locationName);
      setData(data);
+     mainSection.style.display = "block";
+     errorMessageElement.style.display = "none";
+     bodySection.style.backgroundColor = "#4b595e";
+    
  } catch (error) {
-     alert(error);
+    mainSection.style.display = "none";
+    bodySection.style.backgroundColor = "#4f595d";
+    errorMessageElement.style.display = "block";
+    errorMessageElement.innerHTML = `<img width="70" height="70" style="filter: invert(100%)"; 
+                                      src="https://img.icons8.com/ios/50/broken-robot.png" alt="broken-robot"/>
+                                       <h3>An error occured :</h3> ${error}`;
+     
  }
 } 
 
+// loading page
 let loader = document.getElementById("preloader");
 window.addEventListener("load", function(){
   this.setTimeout(() =>{
     loader.style.display = "none"
-  }, 10)
+  }, 4000)
 })
 
 
@@ -103,5 +137,5 @@ document.querySelector("input").addEventListener("keypress", function(event) {
  });
 
 onboarding()
-
+clock()
 
