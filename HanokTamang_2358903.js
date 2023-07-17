@@ -1,8 +1,8 @@
 
 function onboarding(){
-    const locationName = "powys";
-    const appid = "1777b6252cacbfaadcdd94227bf20ba6";
-    const units = "metric";
+    const locationName = "powys"; //default city name
+    const appid = "1777b6252cacbfaadcdd94227bf20ba6"; // Hanok tamang API id
+    const units = "metric"; // converts units to metric
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${locationName}&appid=${appid}&units=${units}`;
     fetch(url)
     .then((response) => response.json())
@@ -22,11 +22,11 @@ let fetchData = function fetchWeather(locationName){
         data = fetch(url)
         .then((response) => {
           if (!response.ok) {
-            if (response.status === 404) {
-              throw new Error("Location not found");
-            } else if (response.status === 500) {
+            if (response.status === 404) {  // error case for 404 status code
+              throw new Error("Location not found.");
+            } else if (response.status === 500) { // error case for 500 status code
               throw new Error("Internal server error.");
-            }else if (locationName.length == 0) {
+            }else if (locationName.length == 0) {  // error case when use send empty request
               throw new Error("Enter a location Name.");
             } else {
               throw new Error("An error occurred");
@@ -38,7 +38,7 @@ let fetchData = function fetchWeather(locationName){
               resolve(data);  
         })
         .catch((error) => {
-          reject((error.message));
+          reject(error.message);
         })
     })   
 }
@@ -54,10 +54,8 @@ function clock() {
   let time = hours + ":" + (minutes < 10 ? '0' + minutes : minutes) + ":" + seconds +  ' ' + timePeriod;
   setTimeout(() =>{
     document.getElementById('time').textContent = time;
-  },1000) 
-  
+  },1000)  
 }
-
 // Update the seconds every second
 setInterval(clock, 1000);
 
@@ -70,7 +68,7 @@ function searchResponse(data) {
     let daysOfWeek = ["Sunday", "Monday", "Tuesday" , "Wednesday", "Thursday", "Friday", "Saturday"];
     let dayIndex = today.getDay();
     let dayName = daysOfWeek[dayIndex];  
-    
+
     document.getElementById("date").innerHTML = dates;
     document.getElementById("day").innerHTML = dayName;
     document.getElementById("name").innerHTML = data.name + ",";
@@ -84,7 +82,7 @@ function searchResponse(data) {
     document.getElementById("wind_speed").innerHTML = `<img width="30" height="30" style="filter: invert(100%)"; src="https://img.icons8.com/ios-filled/50/000000/wind--v1.png" alt="wind--v1"/>` +  data.wind.speed + " km / h";
     const weatherIconId = data.weather[0].icon;
     const weatherIconElement =  document.getElementById("top__section-weatherIcon")
-    weatherIconElement.innerHTML = `<img style="height:100px; width:100px;"src="http://openweathermap.org/img/w/${weatherIconId}.png">`;
+    weatherIconElement.innerHTML = `<img style="height:100px; width:100px;"src="https://openweathermap.org/img/w/${weatherIconId}.png">`;
     document.getElementById("temp_min").innerHTML = data.main.temp_min + ' °C';
     document.getElementById("temp_max").innerHTML = data.main.temp_max + ' °C'; 
     document.getElementById("footer").innerHTML = `&copy Hanok Tamang. All rights reserved. Made with <a href="https://openweathermap.org/" target="_blank">openWeatherMap</a>`
@@ -100,6 +98,7 @@ async function main() {
   let errorMessageElement = document.querySelector(".errorMessage");
   const mainSection = document.querySelector(".container");
   let bodySection = document.querySelector('body');
+
  try {
      const locationName = document.querySelector("#locationName").value;
      data = await fetchData(locationName);
@@ -119,15 +118,6 @@ async function main() {
  }
 } 
 
-// loading page
-let loader = document.getElementById("preloader");
-window.addEventListener("load", function(){
-  this.setTimeout(() =>{
-    loader.style.display = "none"
-  }, 4000)
-})
-
-
 document.getElementById("Search").addEventListener("click", main);
 document.querySelector("input").addEventListener("keypress", function(event) {
      if (event.key === "Enter") {
@@ -136,6 +126,17 @@ document.querySelector("input").addEventListener("keypress", function(event) {
      }
  });
 
-onboarding()
+// loading page
+let loader = document.getElementById("preloader");
+window.addEventListener("load", function(){
+  this.setTimeout(() =>{
+    loader.style.display = "none"
+  }, 3000)
+})
+
+
+
+ // calling the onboarding and clock function
+onboarding()  
 clock()
 

@@ -112,7 +112,7 @@ nav{
 }
 
 .top__section-weatherSection{
-    /* padding: 0 0 0 5rem; */
+    padding: 0 0 0 5rem;
 }
 
 #top__section-weatherIcon{
@@ -123,7 +123,7 @@ nav{
     display: flex;
     padding: 1rem 1rem 0 0;
     gap: 0.3rem;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 /* lower Section */
@@ -189,7 +189,7 @@ nav{
 /* preloader Section */
 #preloader{
     background: #000 url('https://media3.giphy.com/media/cnzP4cmBsiOrccg20V/200w.webp?cid=ecf05e47wuwy3rsoil75slvkyfbjgdxg6pp74o6arj9tgkrd&ep=v1_gifs_related&rid=200w.webp&ct=g') no-repeat center center;
-    background-size: 15%;
+    background-size: 18%;
     height: 100vh;
     animation: spin 2s linear infinite;
     width: 100%;
@@ -237,6 +237,61 @@ nav{
     line-height: 30px;
 }
 
+
+  /* Media Queries  */
+  /* Extra-large devices */
+  @media (min-width: 992px) and (max-width: 1200px) {
+    .searchBar {
+      width: 60%;
+    }
+  
+    .container {
+      width: 60%;
+    }
+  
+    .errorMessage {
+      width: 60%;
+    }
+  
+  }
+
+  /* Large devices */
+  @media (min-width: 768px) and (max-width: 992px) {
+    .searchBar {
+      width: 70%;
+    }
+
+    #locationName{
+        width: 30vw;
+    }
+  
+    .container {
+      width: 70%;
+    }
+  
+    .errorMessage {
+      width: 70%;
+    }
+  }
+
+
+  /* Medium devices  */
+  @media (min-width: 576px) and (max-width: 768px) {
+    .searchBar {
+      width: 80%;
+    }
+
+    .container {
+      width: 80%;
+    }
+  
+    .errorMessage {
+      width: 80%;
+      
+    }
+  }
+  
+
 /* Small devices (up to 576px) */
 @media (max-width: 576px) {
     .searchBar {
@@ -245,6 +300,10 @@ nav{
 
     #locationName{
         width: 40vw;
+    }
+
+    .top__section-weatherSection{
+        padding: 0 !important;
     }
 
     .top_section-names{
@@ -268,59 +327,6 @@ nav{
   
 }
   
-  /* Medium devices (576px - 768px) */
-  @media (min-width: 576px) and (max-width: 768px) {
-    .searchBar {
-      width: 80%;
-    }
-  
- 
-
-    .container {
-      width: 80%;
-    }
-  
-    .errorMessage {
-      width: 80%;
-      
-    }
   
   
-  }
   
-  /* Large devices (768px - 992px) */
-  @media (min-width: 768px) and (max-width: 992px) {
-    .searchBar {
-      width: 70%;
-    }
-
-    #locationName{
-        width: 30vw;
-    }
-  
-    .container {
-      width: 70%;
-    }
-  
-    .errorMessage {
-      width: 70%;
-    }
-  
-
-  }
-  
-  /* Extra-large devices (992px - 1200px) */
-  @media (min-width: 992px) and (max-width: 1200px) {
-    .searchBar {
-      width: 60%;
-    }
-  
-    .container {
-      width: 60%;
-    }
-  
-    .errorMessage {
-      width: 60%;
-    }
-  
-  }
