@@ -171,7 +171,7 @@ nav{
     justify-content: flex-end;
 }
 
-#history-trigger{
+.history{
     margin: 0.7rem 0.2rem;
     padding: 1rem 0.5rem;
     border-radius: 5px;
@@ -179,7 +179,7 @@ nav{
     color: white;
 }
 
-#history-trigger:hover{
+.history:hover{
    background-color: var(--primary-blue);
    border: 1px solid var(--primary-color);
    color: black;

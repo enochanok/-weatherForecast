@@ -1,4 +1,5 @@
 
+
 function onboarding(){
     const locationName = "powys"; //default city name
     const appid = "1777b6252cacbfaadcdd94227bf20ba6"; // Hanok tamang API id
@@ -6,11 +7,20 @@ function onboarding(){
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${locationName}&appid=${appid}&units=${units}`;
     fetch(url)
     .then((response) => response.json())
-    .then((data) => {
+    .then(async(data) => {
         searchResponse(data);
-    
+          await fetch("insert.php", {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data) 
+        })
     })
-
+    document.querySelector(".history").addEventListener("click", () => {
+      console.log("Button clicked!");
+      window.location.href = `history.html?city=${locationName}`;
+    });
 }
 
 let fetchData = function fetchWeather(locationName){
@@ -34,13 +44,26 @@ let fetchData = function fetchWeather(locationName){
           }
           return response.json();
         })
-          .then((data) => {
-              resolve(data);  
+          .then(async(data) => {
+              resolve(data); 
+              workingInCity = data.name;
+              await fetch("insert.php", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data) 
+              }) 
         })
         .catch((error) => {
           reject(error.message);
         })
+        document.querySelector(".history").addEventListener("click", () => {
+          console.log("Button clicked!");
+          window.location.href = `history.html?city=${locationName}`;
+        });
     })   
+    
 }
 
 function clock() {
@@ -64,12 +87,13 @@ function searchResponse(data) {
     let months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
     let monthIndex = today.getMonth();
     let monthName = months[monthIndex];
-    let dates = today.getDate() + " " + monthName + " " + today.getFullYear();
+    let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
+    let currentDate = today.getDate() + " " + monthName + " " + today.getFullYear();
     let daysOfWeek = ["Sunday", "Monday", "Tuesday" , "Wednesday", "Thursday", "Friday", "Saturday"];
     let dayIndex = today.getDay();
-    let dayName = daysOfWeek[dayIndex];  
-
-    document.getElementById("date").innerHTML = dates;
+    let dayName = daysOfWeek[dayIndex]; 
+    data['dates'] = date;
+    document.getElementById("date").innerHTML = currentDate;
     document.getElementById("day").innerHTML = dayName;
     document.getElementById("name").innerHTML = data.name + ",";
     document.getElementById("country").innerHTML = data.sys.country;
@@ -102,12 +126,13 @@ async function main() {
  try {
      const locationName = document.querySelector("#locationName").value;
      data = await fetchData(locationName);
+
      setData(data);
      mainSection.style.display = "block";
      errorMessageElement.style.display = "none";
-     bodySection.style.backgroundColor = "#4b595e";
-    
- } catch (error) {
+     bodySection.style.backgroundColor = "#4b595e"; 
+  } 
+catch (error) {
     mainSection.style.display = "none";
     bodySection.style.backgroundColor = "#4f595d";
     errorMessageElement.style.display = "block";
@@ -131,10 +156,8 @@ let loader = document.getElementById("preloader");
 window.addEventListener("load", function(){
   this.setTimeout(() =>{
     loader.style.display = "none"
-  }, 3000)
+  }, 1000)
 })
-
-
 
  // calling the onboarding and clock function
 onboarding()  
