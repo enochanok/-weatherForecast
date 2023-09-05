@@ -8,4 +8,3 @@
 	// Connection
 
 	$connection = mysqli_connect($hostname, $username, $password, $dbname);
-?>

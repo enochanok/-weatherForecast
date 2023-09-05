@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>history</title>
     <link rel="icon" href="./asset/weather_logo.png" type="image/png" />
-    <link rel="stylesheet" href="history.css" />
+    <link rel="stylesheet" href="./css/history.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -17,23 +17,27 @@
 </head>
 <body>
        <!-- Navigation bar -->
-       <nav>
+    <nav>
         <div id="pageHead">Weather-App</div>
     </nav>
+    <div>
+        <!-- Go back button to return home page -->
+        <button class="goBack">Home</button>
+    </div>
     <main>
         <!-- Heading -->
         <div class="heading"></div>
         <!-- Old records -->
+    <div class="oldData__container">
         <div class="oldData"></div>
-    </main>
-    <div>
-        <!-- Go back button -->
-        <button class="goBack">Home</button>
     </div>
+    
+  
+</main>
     <!-- Footer -->
     <footer>
-        © 2023 Hanok Tamang. All Rights Reserved.
+        &copy Hanok Tamang. All rights reserved. Made with <a style="color: #ffe963; text-decoration: none;" href="https://openweathermap.org/" target="_blank">openWeatherMap</a>
     </footer>
-    <script src="history.js"></script>
+    <script src="./javascript/history.js"></script>
 </body>
 </html>

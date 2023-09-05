@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Forcast Application</title>
     <link rel="icon" href="./asset/weather_logo.png" type="image/png" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -26,7 +26,7 @@
           <img class="weather_logo" src="./asset/weather_logo.png" alt="logo" />
         </a>
         <div>
-          <input id="locationName" placeholder="Location" />
+          <input id="searchLocation" placeholder="Location" />
           <i id="Search" class="fa fa-search"></i>
         </div>
       </div>
@@ -34,7 +34,7 @@
 
     <!-- error Handling -->
     <div class="errorMessage">
-     <span class="errorMessage_content"></span>
+     <div id="error"></div>
     </div>
 
     <!-- main section -->
@@ -91,5 +91,5 @@
   </div>
   <div id="footer"></div>
  </body>
-  <script src="script.js" defer></script>
+  <script src="./javascript/script.js" defer></script>
 </html>

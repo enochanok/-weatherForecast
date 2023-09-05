@@ -6,6 +6,7 @@
                 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+/* Define custom color variables using CSS custom properties */
 :root{
     --primary-color: #4b595e;
     --primary-blue: #8ad0ce;
@@ -56,7 +57,7 @@ nav{
     width: 30px; 
 }
 
-#locationName{
+#searchLocation{
     width: 15vw;
     padding: 0.6em;
     border-radius: 5px;
@@ -177,6 +178,7 @@ nav{
     border-radius: 5px;
     border: 1px solid white;
     color: white;
+    cursor: pointer;
 }
 
 .history:hover{
@@ -218,7 +220,8 @@ nav{
     box-shadow: 7px 7px 14px -1px rgba(0,0,0,0.31);
 }
 
-.errorMessage_content {
+#error {
+    display: none;
     background-color: red;
     z-index: 11;
     color: red;
@@ -261,7 +264,7 @@ nav{
       width: 70%;
     }
 
-    #locationName{
+    #searchLocation{
         width: 30vw;
     }
   
@@ -298,7 +301,7 @@ nav{
       width: 90%;
     }
 
-    #locationName{
+    #searchLocation{
         width: 40vw;
     }
 

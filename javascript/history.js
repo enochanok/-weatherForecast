@@ -1,4 +1,4 @@
-// City vairable
+// City variable
 var city;
 
 // The function generates HTML Markup
@@ -27,20 +27,11 @@ function generateHTMLMarkup(data){
     }
 }
 
-// This function sets color to the page
-function setColor(){
-    document.documentElement.style.setProperty("--color1", "#2A2F4F");
-    document.documentElement.style.setProperty("--color2", "#E5BEEC");
-    document.documentElement.style.setProperty("--color3", "#917FB3");
-    document.documentElement.style.setProperty("--color4", "#FDE2F3");
-    document.documentElement.style.setProperty("--color8", "#FFFFFF");
-    document.documentElement.style.setProperty("--color9", "#000000");
-}
 
 // This function fetches data from php
 async function fetchData(city){
 	const data = {"city": city}
-    let res = await fetch("select.php", {
+    let res = await fetch("./php/select.php", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -48,7 +39,7 @@ async function fetchData(city){
         body: JSON.stringify(data) 
     })
     let phpRes = await res.json();
-    return phpRes;z
+    return phpRes;
 }
 
 // This function gets city name from url
@@ -83,9 +74,6 @@ async function afterLoad(){
 }
 
 const urlParams = new URLSearchParams(window.location.search);
-// const city = urlParams.get('city');
 
-// Now you can use the 'city' value to fetch historical weather data or perform other actions
-// console.log("City:", city);
-
+//calling afterLoad function
 afterLoad();
